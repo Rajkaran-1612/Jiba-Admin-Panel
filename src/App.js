@@ -1,5 +1,6 @@
 import React from "react";
-import '../src/App.css'
+import './App.scss'
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Dashboard from "./Components/Dashboard";
 import Memberships from "./Components/Memberships";
@@ -9,19 +10,12 @@ import Users from "./Components/Users";
 
 function App() {
   return (
-    <>
-    <Router>
-      <SideBar>
-              <Routes>
-                <Route exact path='/' element= { <Dashboard /> }/>
-                <Route exact path='/dashboard' element= { <Dashboard /> }/>
-                <Route exact path='/memberships' element= { <Memberships /> }/>
-                <Route exact path='/transactions' element= { <Transactions /> }/>
-                <Route exact path='/users' element= { <Users /> }/>
-              </Routes>
-      </SideBar>
-          </Router>
-    </>
+    <div className="home">
+    <SideBar />
+      <div className="homeContainer">
+        <p>Container</p>
+        </div>
+      </div>
   );
 }
 
