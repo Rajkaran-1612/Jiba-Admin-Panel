@@ -1,9 +1,14 @@
 import React from 'react'
+import SideBar from './SideBar'
+import './Users.scss'
 
 function Dashboard() {
   return (
-    <div>
-      <h1>Dashboard</h1>
+    <div className='list'>
+    <SideBar />
+    <div className='listContainer'>
+      <div className='listTitle'>Dashboard</div>
+    </div>
     </div>
   )
 }

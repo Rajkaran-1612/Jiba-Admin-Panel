@@ -1,11 +1,34 @@
 import React, { useEffect, useState } from 'react'
-import { Table, Button } from "react-bootstrap";
 import { transactionDataService } from '../Services/CrudFirestore';
-import './Style.css';
+import { DataGrid } from '@mui/x-data-grid';
+import SideBar from './SideBar';
+import './Users.scss';
 
 
 function Transactions() {
   const [transactions, setTransactions] = useState([]);
+
+  const columns = [
+    { field: 'id', headerName: 'Transaction ID', width: 150 },
+    { field: 'userID', headerName: 'User ID', width: 200 },
+    { field: 'token', headerName: 'Token', width: 130 },
+    {
+      field: 'type',
+      headerName: 'Type',
+      width: 90,
+    },
+    {
+      field: 'currency',
+      headerName: 'Currency',
+      width: 90,
+    },
+    {
+      field: 'amount',
+      headerName: 'Amount',
+      width: 90,
+    },
+  ];
+
 
   useEffect(() => {
     getTransactions();
@@ -17,35 +40,32 @@ function Transactions() {
     setTransactions(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
+  const rowData = transactions?.map(transaction => {
+    return {
+      id: transaction?.id,
+      userID: transaction?.userID,
+      token: transaction?.token,
+      type: transaction?.type,
+      currency: transaction?.currency,
+      amount: transaction?.amount
+    };
+  })
+
   return (
-    <div>
-      <h1>Transactions Page</h1>
-      <Table striped bordered hover size="sm">
-        <thead>
-          <tr>
-            <th>Transaction ID</th>
-            <th>User ID</th>
-            <th>Token</th>
-            <th>Type</th>
-            <th>Amount</th>
-            <th>Currency</th>
-          </tr>
-        </thead>
-        <tbody>
-          {transactions.map((doc) => {
-            return (
-              <tr key={doc.id}>
-                <td>{doc.id}</td>
-                <td>{doc.userID}</td>
-                <td>{doc.token}</td>
-                <td>{doc.type}</td>
-                <td>{doc.amount}</td>
-                <td>{doc.currency}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
+    <div className='list'>
+    <SideBar />
+    <div className='listContainer'>
+      <div className='listTitle'>Transactions List</div>
+      <div style={{ height: 400, width: '100%' }}>
+      <DataGrid
+        rows={rowData}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+        checkboxSelection
+      />
+    </div>
+    </div>
     </div>
   )
 }

@@ -1,10 +1,32 @@
 import React, { useEffect, useState } from 'react'
-import { Table, Button } from "react-bootstrap";
 import { membershipDataService } from '../Services/CrudFirestore';
-import './Style.css';
+import { DataGrid } from '@mui/x-data-grid';
+import SideBar from './SideBar';
+import './Users.scss';
 
 function Memberships() {
   const [memberships, setMemberships] = useState([]);
+
+  const columns = [
+    { field: 'id', headerName: 'ID', width: 150 },
+    { field: 'name', headerName: 'Name', width: 200 },
+    { field: 'position', headerName: 'Position', width: 130 },
+    {
+      field: 'isKSIJ',
+      headerName: 'KSIJ',
+      width: 90,
+    },
+    {
+      field: 'isVisible',
+      headerName: 'Visibility',
+      width: 90,
+    },
+    {
+      field: 'price',
+      headerName: 'Price',
+      width: 90,
+    },
+  ];
 
   useEffect(() => {
     getMemberships();
@@ -16,33 +38,32 @@ function Memberships() {
     setMemberships(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
+  const rowData = memberships?.map(membership => {
+    return {
+      id: membership?.id,
+      name: membership?.name,
+      position: membership?.position,
+      isKSIJ: membership?.isKSIJ,
+      isVisible: membership?.isVisible,
+      price: membership?.price
+    };
+  })
+
   return (
-    <div>
-      <h1>Memberships</h1>
-      <Table striped bordered hover size="sm">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Position</th>
-            <th>KSIJ</th>
-            <th>Visibility</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          {memberships.map((doc) => {
-            return (
-              <tr key={doc.id}>
-                <td>{doc.name}</td>
-                <td>{doc.position}</td>
-                <td>{JSON.stringify(doc.isKSIJ)}</td>
-                <td>{JSON.stringify(doc.isVisible)}</td>
-                <td>{doc.price}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
+    <div className='list'>
+    <SideBar />
+    <div className='listContainer'>
+      <div className='listTitle'>Memberships List</div>
+      <div style={{ height: 400, width: '100%' }}>
+      <DataGrid
+        rows={rowData}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+        checkboxSelection
+      />
+    </div>
+    </div>
     </div>
   )
 }
