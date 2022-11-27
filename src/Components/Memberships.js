@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { membershipDataService } from '../Services/CrudFirestore';
 import { DataGrid } from '@mui/x-data-grid';
 import SideBar from './SideBar';
-import './Users.scss';
+import './Memberships.scss';
 
 function Memberships() {
   const [memberships, setMemberships] = useState([]);

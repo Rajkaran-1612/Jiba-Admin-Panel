@@ -4,6 +4,8 @@ import { collection, getDocs, getDoc, addDoc, updateDoc, deleteDoc, doc } from "
 const userCollectionRef = collection(db, "users");
 const membershipCollectionRef = collection(db, "memberships");
 const transactionCollectionRef = collection(db, "transactions");
+const userMembershipCollectionRef = collection(db, "userMemberships");
+const contactFormMessageCollectionRef = collection(db, "contactFormMessages");
 
 class userDataService {
     addUser = (newUser) => {
@@ -80,7 +82,59 @@ class transactionDataService {
     };
 }
 
+class userMembershipDataService {
+    addUserMembership = (newUserMembership) => {
+        return addDoc(userMembershipCollectionRef, newUserMembership);
+    };
+
+    updateUserMembership = (id, updatedUserMembership) => {
+        const userMembershipDoc = doc(db, "userMemberships", id);
+        return updateDoc(userMembershipDoc, updatedUserMembership);
+    };
+
+    deleteUserMembership = (id) => {
+        const userMembershipDoc = doc(db, "userMemberships", id);
+        return deleteDoc(userMembershipDoc);
+    };
+
+    getAllUserMemberships = () => {
+        return getDocs(userMembershipCollectionRef);
+    };
+
+    getUserMembership = (id) => {
+        const userMembershipDoc = doc(db, "userMemberships", id);
+        return getDoc(userMembershipDoc);
+    };
+}
+
+class contactFormMessageDataService {
+    addContactFormMessage = (newContactFormMessage) => {
+        return addDoc(contactFormMessageCollectionRef, newContactFormMessage);
+    };
+
+    updateContactFormMessage = (id, updatedContactFormMessage) => {
+        const contactFormMessageDoc = doc(db, "contactFormMessages", id);
+        return updateDoc(contactFormMessageDoc, updatedContactFormMessage);
+    };
+
+    deleteContactFormMessage = (id) => {
+        const contactFormMessageDoc = doc(db, "contactFormMessages", id);
+        return deleteDoc(contactFormMessageDoc);
+    };
+
+    getAllContactFormMessages = () => {
+        return getDocs(contactFormMessageCollectionRef);
+    };
+
+    getContactFormMessage = (id) => {
+        const contactFormMessageDoc = doc(db, "contactFormMessages", id);
+        return getDoc(contactFormMessageDoc);
+    };
+}
+
 export default new userDataService();
 membershipDataService = new membershipDataService();
 transactionDataService = new transactionDataService();
-export { membershipDataService, transactionDataService }
+userMembershipDataService = new userMembershipDataService();
+contactFormMessageDataService = new contactFormMessageDataService();
+export { membershipDataService, transactionDataService, userMembershipDataService, contactFormMessageDataService }

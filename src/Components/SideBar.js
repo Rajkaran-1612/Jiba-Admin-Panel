@@ -4,8 +4,6 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import StoreIcon from "@mui/icons-material/Store";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Link } from "react-router-dom";
 
 function SideBar() {
@@ -45,15 +43,18 @@ function SideBar() {
             <span>Transactions</span>
           </li>
           </Link>
-          <p className="title">USER</p>
+          <Link to="/usermemberships" style={{ textDecoration: "none" }}>
           <li>
-            <AccountCircleOutlinedIcon className="icon" />
-            <span>Profile</span>
+            <CreditCardIcon className="icon" />
+            <span>User Memberships</span>
           </li>
+          </Link>
+          <Link to="/contactformmessages" style={{ textDecoration: "none" }}>
           <li>
-            <ExitToAppIcon className="icon" />
-            <span>Logout</span>
+            <CreditCardIcon className="icon" />
+            <span>Contact Form Data</span>
           </li>
+          </Link>
         </ul>
       </div>
     </div>

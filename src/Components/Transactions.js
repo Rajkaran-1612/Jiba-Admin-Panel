@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { transactionDataService } from '../Services/CrudFirestore';
 import { DataGrid } from '@mui/x-data-grid';
 import SideBar from './SideBar';
-import './Users.scss';
+import './Transactions.scss';
 
 
 function Transactions() {

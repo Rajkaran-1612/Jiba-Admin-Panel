@@ -6,6 +6,8 @@ import Dashboard from "./Components/Dashboard";
 import Memberships from "./Components/Memberships";
 import Transactions from "./Components/Transactions";
 import Users from "./Components/Users";
+import UserMemberships from "./Components/UserMemberships";
+import ContactFormMeassages from "./Components/ContactFormMeassages";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Route path="/memberships" element={<Memberships />} />
         <Route path="/transactions" element={<Transactions />} />
         <Route path="/users" element={<Users />} />
+        <Route path="/usermemberships" element={<UserMemberships />} />
+        <Route path="/contactformmessages" element={<ContactFormMeassages />} />
       </Routes>
     </Router>
     </>
