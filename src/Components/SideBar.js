@@ -4,6 +4,8 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import StoreIcon from "@mui/icons-material/Store";
+import CardMembershipIcon from '@mui/icons-material/CardMembership';
+import DatasetIcon from '@mui/icons-material/Dataset';
 import { Link } from "react-router-dom";
 
 function SideBar() {
@@ -45,13 +47,13 @@ function SideBar() {
           </Link>
           <Link to="/usermemberships" style={{ textDecoration: "none" }}>
           <li>
-            <CreditCardIcon className="icon" />
+            <CardMembershipIcon className="icon" />
             <span>User Memberships</span>
           </li>
           </Link>
           <Link to="/contactformmessages" style={{ textDecoration: "none" }}>
           <li>
-            <CreditCardIcon className="icon" />
+            <DatasetIcon className="icon" />
             <span>Contact Form Data</span>
           </li>
           </Link>

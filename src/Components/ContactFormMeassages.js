@@ -3,6 +3,7 @@ import { contactFormMessageDataService } from '../Services/CrudFirestore';
 import { DataGrid } from '@mui/x-data-grid';
 import SideBar from './SideBar';
 import './ContactFormMessages.scss';
+import Navbar from './Navbar';
 
 function ContactFormMeassages() {
     const [formDetails, setFormDetails] = useState([]);
@@ -41,16 +42,17 @@ function ContactFormMeassages() {
   return (
     <div className='list'>
     <SideBar />
+    <div className='container'>
+    <Navbar />
     <div className='listContainer'>
       <div className='listTitle'>Contact Form Data List</div>
-      <div style={{ height: 400, width: '100%' }}>
+      <div style={{ height: 450, width: '100%' }}>
       <DataGrid
         rows={rowData}
         columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
         checkboxSelection
       />
+    </div>
     </div>
     </div>
     </div>

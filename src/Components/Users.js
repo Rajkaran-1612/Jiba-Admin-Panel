@@ -3,6 +3,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import userDataService from '../Services/CrudFirestore'
 import SideBar from './SideBar';
 import './Users.scss'
+import Navbar from './Navbar';
 
 
 function Users() {
@@ -46,14 +47,20 @@ function Users() {
   };
 
   const rowData = users?.map(user => {
+    if(user?.membershipType === null) {
+      user.membershipType = "NA";
+    }
+    if(user?.membershipID === "") {
+      user.membershipID = "NA";
+    }
     return {
       id: user?.id,
       name: user?.name,
       phoneNumber: user?.phoneNumber,
       emailID: user?.emailID,
       yob: user?.yearOfBirth,
-      membershipType: user?.membershipType,
-      membershipId: user?.membershipID,
+      membershipType: user.membershipType,
+      membershipId: user.membershipID,
       isKSIJ: user?.isKSIJ
     };
   })
@@ -61,19 +68,21 @@ function Users() {
   return (
     <div className='list'>
     <SideBar />
+    <div className='container'>
+    <Navbar />
     <div className='listContainer'>
       <div className='listTitle'>Users List</div>
-      <div style={{ height: 400, width: '100%' }}>
+      <div style={{ height: 450, width: '100%' }}>
       <DataGrid
         rows={rowData}
         columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
         checkboxSelection
       />
     </div>
     </div>
     </div>
+    </div>
+    
   )
 }
 

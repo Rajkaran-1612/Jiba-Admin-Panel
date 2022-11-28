@@ -3,6 +3,7 @@ import { userMembershipDataService } from '../Services/CrudFirestore';
 import { DataGrid } from '@mui/x-data-grid';
 import SideBar from './SideBar';
 import './UserMemberships.scss';
+import Navbar from './Navbar';
 
 function UserMemberships() {
   const [userMemberships, setUserMemberships] = useState([]);
@@ -51,16 +52,17 @@ function UserMemberships() {
   return (
     <div className='list'>
     <SideBar />
+    <div className='container'>
+    <Navbar />
     <div className='listContainer'>
       <div className='listTitle'>User Memberships List</div>
-      <div style={{ height: 400, width: '100%' }}>
+      <div style={{ height: 450, width: '100%' }}>
       <DataGrid
         rows={rowData}
         columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
         checkboxSelection
       />
+    </div>
     </div>
     </div>
     </div>

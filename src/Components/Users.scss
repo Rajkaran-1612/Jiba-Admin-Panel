@@ -1,8 +1,9 @@
 .list {
   display: flex;
 
-  .listContainer {
+  .container {
     flex: 6;
+    flex-direction: column;
   }
 }
 
